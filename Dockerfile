@@ -12,7 +12,8 @@ RUN npx prisma generate
 
 COPY nest-cli.json tsconfig.json tsconfig.build.json src/ ./
 
-RUN npm run build  && \
+RUN npm run build && \
+    npm prune --omit=dev && \
     npx pkg . --targets node16-alpine -o ./executables/nest-prisma-docker-starter && \
     rm -rf ~/.pkg-cache
 
