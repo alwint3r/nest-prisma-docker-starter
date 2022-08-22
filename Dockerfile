@@ -2,6 +2,8 @@ FROM node:16-alpine AS builder
 
 WORKDIR /usr/src/app
 
+RUN mkdir src
+
 COPY package.json package-lock.json ./
 
 RUN npm ci
@@ -10,7 +12,9 @@ COPY ./prisma ./
 
 RUN npx prisma generate
 
-COPY nest-cli.json tsconfig.json tsconfig.build.json src/ ./
+COPY nest-cli.json tsconfig.json tsconfig.build.json ./
+
+COPY src/ ./src
 
 RUN npm run build && \
     npm prune --omit=dev && \
