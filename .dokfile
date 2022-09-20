@@ -1,3 +1,10 @@
 {
-    "image-name": "nest-prisma-docker-starter"
+  "imageName": "nest-prisma-docker-starter",
+  "profiles": [
+    {
+      "id": "default",
+      "asLatest": true,
+      "build": {}
+    }
+  ]
 }
