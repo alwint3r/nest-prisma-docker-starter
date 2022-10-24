@@ -17,8 +17,7 @@ COPY nest-cli.json tsconfig.json tsconfig.build.json ./
 COPY src/ ./src
 
 RUN npm run build && \
-    npm prune --omit=dev && \
-    npx pkg . --targets node16-alpine -o ./executables/nest-prisma-docker-starter && \
+    npx pkg . --targets node16-alpine --compress GZip -o ./executables/nest-prisma-docker-starter && \
     rm -rf ~/.pkg-cache
 
 FROM alpine:3.16 AS runner
